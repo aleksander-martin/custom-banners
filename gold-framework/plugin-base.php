@@ -1,7 +1,5 @@
 <?php
-
-/* 
-	Base class for Gold Plugins. 
+/* Base class for Gold Plugins. 
 		
 	Abilities:
 		- create custom post types (IK Custom Post type)
@@ -17,14 +15,15 @@ require_once('gold-plugins-custom-post-type.php');
 if(!class_exists("CBP_GoldPlugin")):
 	class CBP_GoldPlugin
 	{
-		var $customPostTypes = array();
-		var $taxonomies_to_register = array();
-		var $css_to_register = array();
-		var $admin_css_to_register = array();
-		var $scripts_to_register = array();
-		var $admin_scripts_to_register = array();
+		// FIX: PHP 8 visibility modifiers
+		public $customPostTypes = array();
+		public $taxonomies_to_register = array();
+		public $css_to_register = array();
+		public $admin_css_to_register = array();
+		public $scripts_to_register = array();
+		public $admin_scripts_to_register = array();
 		
-		function __construct()
+		public function __construct()
 		{
 			$this->add_hooks();	
 		}
@@ -37,8 +36,12 @@ if(!class_exists("CBP_GoldPlugin")):
 			else {
 				$slug = 'post-type-' . (count($this->customPostTypes) + 1);
 			}
-			$this->customPostTypes[$slug] = new GoldPlugins_CustomPostType($postType, $customFields);
+			$this->customPostTypes[$slug] = new GoldPlugins_CustomPostType();
+            $this->customPostTypes[$slug]->setupCustomPostType($postType);
+            $this->customPostTypes[$slug]->setupCustomFields($customFields);
 		}
+
+		// ... (Keep the rest of your plugin-base.php file from public function add_taxonomy downwards exactly as it is)
 
 		/* this is the function to call from other code, which creates *a single* taxonomy to be registered */
 		public function add_taxonomy($slug, $post_types, $singular, $plural, $args = false)
