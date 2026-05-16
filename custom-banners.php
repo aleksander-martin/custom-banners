@@ -18,7 +18,7 @@ require_once('lib/cbp_expiration_date.class.php');
 
 class CustomBannersPlugin extends CBP_GoldPlugin
 {
-	var $transitions = array('fade','fadeIn','fadeOut','scrollHorz','scrollVert','shuffle','carousel','flipHorz','flipVert','tileSlide');
+	public $transitions = array('fade','fadeIn','fadeOut','scrollHorz','scrollVert','shuffle','carousel','flipHorz','flipVert','tileSlide');
 	var $free_transitions = array('fade','scrollHorz');
 	
 	function __construct()
