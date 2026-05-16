@@ -20,10 +20,13 @@ Shout out to http://www.makeuseof.com/tag/how-to-create-wordpress-widgets/ for t
 
 class singleBannerWidget extends WP_Widget
 {
-	function singleBannerWidget(){
-		$widget_ops = array('classname' => 'singleBannerWidget', 'description' => 'Displays a specified banner.' );
-		$this->WP_Widget('singleBannerWidget', 'Custom Banner Widget', $widget_ops);
-	}
+function __construct() {
+    parent::__construct(
+        'singleBannerWidget', // Base ID
+        'Single Banner', // Name
+        array( 'description' => __( 'Displays a single banner', 'text_domain' ), )
+    );
+}
 
 	function form($instance)
 	{
