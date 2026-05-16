@@ -20,10 +20,13 @@ Shout out to http://www.makeuseof.com/tag/how-to-create-wordpress-widgets/ for t
 
 class rotatingBannerWidget extends WP_Widget
 {
-	function rotatingBannerWidget(){
-		$widget_ops = array('classname' => 'rotatingBannerWidget', 'description' => 'Displays a rotating banner.' );
-		$this->WP_Widget('rotatingBannerWidget', 'Rotating Banner Widget', $widget_ops);
-	}
+function __construct() {
+        parent::__construct(
+            'rotatingBannerWidget',
+            'Rotating Banner Group',
+            array( 'description' => __( 'Displays a rotating banner group', 'custom-banners' ) )
+        );
+    }
 
 	function form($instance)
 	{
